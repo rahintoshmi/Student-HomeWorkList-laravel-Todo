@@ -1,0 +1,65 @@
+class="text-white text-decoration-none">Edit</a></button>
+                                        <button class="btn btn-primary"><a href="{{ route('delete', $info->id) }}"
+                                                class="text-white text-decoration-none"
+                                               >Delete</a></button>
+=======
+                                        <button class="btn btn-primary"><a href="{{ route('edit', $info->id) }}"
+                                                class="text-white text-decoration-none">Edit</a></button>
+                                        <button class="btn btn-primary"><a href="javascript:void(0);" class="text-white text-decoration-none delete-btn" data-id="{{ $info->id }}">Delete</a></button>
+>>>>>>> REPLACE
+```
+
+```
+<<<<<<< SEARCH
+    <script>
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // You can perform delete action here (AJAX or form submit)
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                }
+            });
+    </script>
+=======
+>>>>>>> REPLACE
+```
+
+Add this new script block before </body> closing tag:
+
+```
+<<<<<<< SEARCH
+</body>
+=======
+    <script>
+        document.querySelectorAll('.delete-btn').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                const id = this.getAttribute('data-id');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = `/delete/${id}`;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
